@@ -1,0 +1,6 @@
+@tns_test_HostAddress = http://localhost:5207
+
+GET {{tns_test_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
