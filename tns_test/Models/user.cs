@@ -1,15 +1,25 @@
+using System.Text.Json.Serialization;
+
 namespace tns_test.Models
 {
     public class User
     {
-        public required int userId { get; set; }
-        public required string fristName { get; set; }
-        public required string lastName { get; set; }
+        public  int userid { get; set; }
+        public required string firstname { get; set; }
+        public required string lastname { get; set; }
         public required string email { get; set; }
-        public string create_at { get; set; }
-        public string update_at { get; set; }
-        public required int departmentId { get; set; }
-        public required Department Department { get; set; }
+        public required int departmentid { get; set; }
+        [JsonIgnore]
+        public Department Department { get; set; }
+    }
+
+
+    public class CreateUserRequest
+    {
+        public string firstname {get; set;}
+        public string lastname {get; set;}
+        public string email {get; set;}
+        public string department {get; set;}
     }
 }
 

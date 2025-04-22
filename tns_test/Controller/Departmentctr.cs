@@ -26,10 +26,6 @@ public class DepartmentController : ControllerBase
         if (!id.HasValue)
         {
             var departments = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\"").ToListAsync();
-            if (departments == null || !departments.Any())
-            {
-                return NoContent();
-            }
             return Ok(departments);
 
         }else {

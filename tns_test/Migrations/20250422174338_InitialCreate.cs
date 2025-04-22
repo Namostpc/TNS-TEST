@@ -15,45 +15,41 @@ namespace tns_test.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    departmentId = table.Column<int>(type: "integer", nullable: false)
+                    departmentid = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    departmentName = table.Column<string>(type: "text", nullable: false),
-                    create_at = table.Column<string>(type: "text", nullable: false),
-                    update_at = table.Column<string>(type: "text", nullable: false)
+                    departmentname = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departments", x => x.departmentId);
+                    table.PrimaryKey("PK_Departments", x => x.departmentid);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
-                    userId = table.Column<int>(type: "integer", nullable: false)
+                    userid = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fristName = table.Column<string>(type: "text", nullable: false),
-                    lastName = table.Column<string>(type: "text", nullable: false),
+                    firstname = table.Column<string>(type: "text", nullable: false),
+                    lastname = table.Column<string>(type: "text", nullable: false),
                     email = table.Column<string>(type: "text", nullable: false),
-                    create_at = table.Column<string>(type: "text", nullable: false),
-                    update_at = table.Column<string>(type: "text", nullable: false),
-                    departmentId = table.Column<int>(type: "integer", nullable: false)
+                    departmentid = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.userId);
+                    table.PrimaryKey("PK_Users", x => x.userid);
                     table.ForeignKey(
-                        name: "FK_Users_Departments_departmentId",
-                        column: x => x.departmentId,
+                        name: "FK_Users_Departments_departmentid",
+                        column: x => x.departmentid,
                         principalTable: "Departments",
-                        principalColumn: "departmentId",
+                        principalColumn: "departmentid",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_departmentId",
+                name: "IX_Users_departmentid",
                 table: "Users",
-                column: "departmentId");
+                column: "departmentid");
         }
 
         /// <inheritdoc />

@@ -17,7 +17,7 @@ namespace tns_test.Data
             modelBuilder.Entity<Department>()
                 .HasMany(d => d.Users)
                 .WithOne(u => u.Department)
-                .HasForeignKey(u => u.departmentId)
+                .HasForeignKey(u => u.departmentid)
                 .OnDelete(DeleteBehavior.Cascade);
 
         }

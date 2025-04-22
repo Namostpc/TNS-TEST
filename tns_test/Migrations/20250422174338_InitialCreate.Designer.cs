@@ -11,7 +11,7 @@ using tns_test.Data;
 namespace tns_test.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250422101703_InitialCreate")]
+    [Migration("20250422174338_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,63 +26,47 @@ namespace tns_test.Migrations
 
             modelBuilder.Entity("tns_test.Models.Department", b =>
                 {
-                    b.Property<int>("departmentId")
+                    b.Property<int>("departmentid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("departmentId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("departmentid"));
 
-                    b.Property<string>("create_at")
+                    b.Property<string>("departmentname")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("departmentName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("update_at")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("departmentId");
+                    b.HasKey("departmentid");
 
                     b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("tns_test.Models.User", b =>
                 {
-                    b.Property<int>("userId")
+                    b.Property<int>("userid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("userId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("userid"));
 
-                    b.Property<string>("create_at")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("departmentId")
+                    b.Property<int>("departmentid")
                         .HasColumnType("integer");
 
                     b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("fristName")
+                    b.Property<string>("firstname")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("lastName")
+                    b.Property<string>("lastname")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("update_at")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.HasKey("userid");
 
-                    b.HasKey("userId");
-
-                    b.HasIndex("departmentId");
+                    b.HasIndex("departmentid");
 
                     b.ToTable("Users");
                 });
@@ -91,7 +75,7 @@ namespace tns_test.Migrations
                 {
                     b.HasOne("tns_test.Models.Department", "Department")
                         .WithMany("Users")
-                        .HasForeignKey("departmentId")
+                        .HasForeignKey("departmentid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
