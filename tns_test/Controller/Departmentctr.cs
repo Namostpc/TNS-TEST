@@ -31,7 +31,7 @@ public class DepartmentController : ControllerBase
         }
         else
         {
-            var departments = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE \"departmentId\" = {0}", id.Value).FirstOrDefaultAsync();
+            var departments = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE \"departmentid\" = {0}", id.Value).FirstOrDefaultAsync();
 
             if (departments == null)
             {
