@@ -28,37 +28,87 @@ public class DepartmentController : ControllerBase
             var departments = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\"").ToListAsync();
             return Ok(departments);
 
-        }else {
+        }
+        else
+        {
             var departments = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE \"departmentId\" = {0}", id.Value).FirstOrDefaultAsync();
 
-        if (departments == null)
-        {
-            return NotFound();
-        }
-        return Ok(departments);
+            if (departments == null)
+            {
+                return NotFound();
+            }
+            return Ok(departments);
         }
 
     }
 
 
     [HttpPut("update")]
-    public async Task<IActionResult> Updatedepartment([FromBody] int? id)
+    public async Task<IActionResult> Updatedepartment([FromBody] UpdateDepartmentRequest request)
     {
 
-        if(!id.HasValue){
-            return BadRequest("id is required");
-        }
-        var getDepartment = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE \"departmentId\" = {0}", id.Value).FirstOrDefaultAsync();
 
-        if (getDepartment == null)
+        if (!ModelState.IsValid)
         {
-            return NotFound();
+            return BadRequest(ModelState);
+        }
 
+        var existingDepartment = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE departmentname = {0}", request.department).FirstOrDefaultAsync();
+        if (existingDepartment == null)
+        {
+            return NotFound("Department Not Found");
         }
 
 
+        existingDepartment.departmentname = request.newdepartmentname ?? existingDepartment.departmentname;
 
-        return NoContent();
+
+
+        try
+        {
+            await _context.SaveChangesAsync();
+            return Ok(existingDepartment);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            var DepartmentstillExists = await _context.Departments.AnyAsync(d => d.departmentname == request.department);
+        if (!DepartmentstillExists)
+        {
+            return NotFound("Department Not Found");
+        }
+        else
+        {
+            throw;
+        }
+        }
+
+
     }
 
+    [HttpPost("create")]
+    public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var existingDepartment = await _context.Departments.FromSqlRaw("SELECT * FROM \"Departments\" WHERE departmentname = {0}", request.department).FirstOrDefaultAsync();
+        if (existingDepartment != null)
+        {
+            return BadRequest("This Department has been created");
+        }
+        Department departmentToAssign;
+
+        var newDepartment = new Department
+        {
+            departmentname = request.department
+        };
+        _context.Departments.Add(newDepartment);
+        await _context.SaveChangesAsync();
+        departmentToAssign = newDepartment;
+
+        return Ok(newDepartment);
+
+    }
 }

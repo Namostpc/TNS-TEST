@@ -9,6 +9,18 @@ namespace tns_test.Models
         [JsonIgnore]
         public ICollection<User> Users { get; set; }
     }
+
+
+    public class CreateDepartmentRequest
+    {
+        public string department {get; set;}
+    }
+    
+    public class UpdateDepartmentRequest
+    {
+        public string department {get; set;}
+        public string newdepartmentname {get; set;}
+    }
 }
 
 

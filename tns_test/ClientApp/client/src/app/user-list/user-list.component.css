@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box;
+}
+
+button {
+    color: black;
+    font-size: medium;
+    margin: 2px;
+    padding: 2px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.createbtn{
+    border-radius: 10px;
+    margin-top: 2rem;
+    padding: .5rem;
+    width: 200px;
+    background-color: rgb(89, 195, 89);
+    cursor: pointer;
+}
+
+.createbtn:hover {
+    background-color: rgb(152, 238, 152);
+}
+
+.createbtn a{
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    padding: 2px;
+}
+
+.editbtn, .deletebtn{
+    padding: 5px;
+    margin-left: 10px;
+}
+.editbtn {
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: rgb(63, 185, 241)
+    
+}
+
+.editbtn:hover {
+    background-color: rgb(112, 200, 240);
+}
+
+.deletebtn{
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: rgb(231, 29, 76)
+}
+
+.deletebtn:hover{
+    background-color: rgb(238, 100, 100);
+}

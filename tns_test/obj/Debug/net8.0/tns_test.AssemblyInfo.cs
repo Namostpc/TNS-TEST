@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tns_test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+320dfbf4e8f658ea4021d2945d85714098b448d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+363beee256cf569db1d4495b69d7681cecd9b91f")]
 [assembly: System.Reflection.AssemblyProductAttribute("tns_test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tns_test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -13,6 +13,16 @@ namespace tns_test.Models
         public Department Department { get; set; }
     }
 
+    public class UserWithDepartment
+{
+    public int userid { get; set; }
+    public string firstname { get; set; }
+    public string lastname { get; set; }
+    public string email { get; set; }
+    public int departmentid { get; set; }
+    public string departmentname { get; set; }
+}
+
 
     public class CreateUserRequest
     {
@@ -20,6 +30,14 @@ namespace tns_test.Models
         public string lastname {get; set;}
         public string email {get; set;}
         public string department {get; set;}
+    }
+
+    public class UpdateuserRequest
+    {
+        public string? firstname {get; set;}
+        public string? lastname {get; set;}
+        public string email {get; set;}
+        public string? department {get; set;}
     }
 }
 
